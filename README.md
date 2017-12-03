@@ -1,7 +1,8 @@
 # reduxy
 
-classic approach:
+### classic approach:
 
+```javascript
 // consts.js
 
 const COUNTER_INCREMENT = 'COUNTER_INCREMENT',
@@ -56,9 +57,11 @@ export default (state = initial, action) => {
 import * as actions from './actions.js';
 import reducer from './reducer.js';
 ...
+```
 
-reduxy approach:
+### reduxy approach:
 
+```javascript
 // counter.js
 
 import reduxy from 'reduxy';
@@ -87,3 +90,4 @@ export default counter;
 
 import { actionCreators, reducer } from './counter.js';
 ...
+```

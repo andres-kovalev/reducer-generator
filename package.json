@@ -1,0 +1,55 @@
+{
+  "name": "react-redux-boilerplate",
+  "version": "1.0.0",
+  "description": "react+redux+mocha+chai+eslint+webpack",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha src --compilers js:babel-core/register --recursive",
+    "lint": "eslint src",
+    "build": "node ./node_modules/webpack/bin/webpack.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chuckie/react-redux-boilerplate.git"
+  },
+  "keywords": [
+    "react",
+    "redux",
+    "mocha",
+    "chai",
+    "eslint",
+    "webpack"
+  ],
+  "author": "Andres Kovalev",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/chuckie/react-redux-boilerplate/issues"
+  },
+  "homepage": "https://github.com/chuckie/react-redux-boilerplate#readme",
+  "devDependencies": {
+    "autoprefixer": "^7.1.6",
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.0.1",
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-1": "^6.24.1",
+    "chai": "^4.1.2",
+    "css-loader": "^0.28.7",
+    "eslint": "^4.10.0",
+    "eslint-loader": "^1.9.0",
+    "eslint-plugin-react": "^7.4.0",
+    "mocha": "^4.0.1",
+    "prop-types": "^15.6.0",
+    "style-loader": "^0.19.0",
+    "webpack": "^3.8.1"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0"
+  }
+}

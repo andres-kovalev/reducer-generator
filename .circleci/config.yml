@@ -1,0 +1,62 @@
+version: 2
+jobs:
+  check-build:
+    docker:
+      - image: circleci/node:8.9.4
+    steps:
+      - checkout
+      - run:
+          name: update-npm
+          command: 'sudo npm install -g npm@latest'
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: install-npm-deps
+          command: npm install
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
+      - run:
+          name: check
+          command: npm run lint
+      - run:
+          name: test
+          command: npm run cover
+      - run:
+          name: check-coverage
+          command: npm run cover:check
+      - run:
+          name: publish-coverage
+          command: npm run codecov
+      - store_artifacts:
+          path: coverage
+          prefix: code-coverage
+  publish-build:
+    docker:
+      - image: circleci/node:8.9.4
+    steps:
+      - checkout
+      - run:
+          name: update-npm
+          command: 'sudo npm install -g npm@latest'
+      - run:
+          name: clean-up
+          command: npm run clean
+      - run:
+          name: npm-auth
+          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ./.npmrc
+      - run:
+          name: npm-publish
+          command: npm publish
+workflows:
+  version: 2
+  check-and-publish:
+    jobs:
+      - check-build
+      - publish-build:
+          requires:
+            - check-build
+          filters:
+            branches:
+              only: master

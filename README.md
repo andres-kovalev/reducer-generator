@@ -1,3 +1,7 @@
+![node](https://img.shields.io/node/v/telegraf.svg?style=flat-square)
+[![ci](https://img.shields.io/circleci/build/github/andres-kovalev/reducer-generator/master.svg?style=flat-square&token=b363910ebcf062c281b47795ffef5c59a5d41fb1)](https://circleci.com/gh/andres-kovalev/reducer-generator)
+[![Codecov](https://img.shields.io/codecov/c/github/andres-kovalev/reducer-generator.svg?style=flat-square&token=1280f2cf41a24522add9857967be2a73)](https://codecov.io/gh/andres-kovalev/reducer-generator)
+
 # Intro
 
 `reducer-generator` package can help for flux/redux developers to reduce boilerplate when creating actions, action creators and reducers. It can automate part of work and generate actions and action creators by itself.

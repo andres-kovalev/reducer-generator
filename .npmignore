@@ -1,6 +1,11 @@
+.circleci
 .nyc_output
 node_modules
+tools
 coverage
+.npmrc
 .eslintcache
+.editorconfig
+.eslintrc
 package-lock.json
 coverage.lcov

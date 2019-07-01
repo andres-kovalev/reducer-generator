@@ -51,12 +51,25 @@ jobs:
           command: npm publish
 workflows:
   version: 2
-  check-and-publish:
+  check-pr:
     jobs:
-      - check-build
+      - check-build:
+          filters:
+            branches:
+              ignore: master
+  publish-package:
+    jobs:
+      - check-build:
+          filters:
+            branches:
+              only: master
+            tags:
+              only: /.*/
       - publish-build:
           requires:
             - check-build
           filters:
             branches:
-              only: master
+              ignore: /.*/
+            tags:
+              only: /^\d+\.\d+\.\d+$/

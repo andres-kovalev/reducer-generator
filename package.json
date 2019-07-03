@@ -23,6 +23,9 @@
     "redux",
     "reducer"
   ],
+  "engines": {
+    "node": ">=6.2.0"
+  },
   "author": {
     "name": "Andres Kovalev",
     "email": "mail@akovalev.ru"

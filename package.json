@@ -9,6 +9,7 @@
     "test": "mocha \"tests/**/*.spec.js\" --require ./tools/mocha.setup.js --recursive",
     "cover": "nyc --reporter=html --reporter=text npm test",
     "cover:check": "nyc check-coverage --lines 70 --functions 70 --branches 70 --statements 70 npm test",
+    "cover:publish": "nyc report --reporter=text-lcov",
     "codecov": "nyc report --reporter=text-lcov > coverage.lcov && codecov -t $CODECOV_TOKEN",
     "precommit": "npm run lint",
     "prepush": "npm run lint && npm run cover && npm run cover:check",

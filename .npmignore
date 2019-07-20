@@ -8,5 +8,6 @@ coverage
 .eslintcache
 .editorconfig
 .eslintrc
+.codecov.yml
 package-lock.json
 coverage.lcov

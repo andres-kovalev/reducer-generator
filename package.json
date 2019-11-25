@@ -1,6 +1,6 @@
 {
   "name": "reducer-generator",
-  "version": "2.0.0",
+  "version": "2.0.3",
   "description": "Flux boilerplate reducer (reducer & action generator)",
   "main": "index.js",
   "scripts": {
@@ -13,7 +13,8 @@
     "codecov": "nyc report --reporter=text-lcov > coverage.lcov && codecov -t $CODECOV_TOKEN",
     "precommit": "npm run lint",
     "prepush": "npm run lint && npm run cover && npm run cover:check",
-    "clean": "node ./tools/clean.js"
+    "clean": "node ./tools/clean.js",
+    "prepare:release": "standard-version -t ''"
   },
   "repository": {
     "type": "git",
@@ -49,7 +50,8 @@
     "mocha": "^6.0.2",
     "nyc": "^13.3.0",
     "sinon": "^7.3.1",
-    "sinon-chai": "^3.3.0"
+    "sinon-chai": "^3.3.0",
+    "standard-version": "^7.0.0"
   },
   "nyc": {
     "include": [
@@ -65,5 +67,41 @@
       "pre-commit": "npm run precommit",
       "pre-push": "npm run prepush"
     }
+  },
+  "standard-version": {
+    "types": [
+        {
+            "type": "feat",
+            "section": "Features"
+        },
+        {
+            "type": "fix",
+            "section": "Bug Fixes"
+        },
+        {
+            "type": "chore",
+            "hidden": true
+        },
+        {
+            "type": "docs",
+            "hidden": true
+        },
+        {
+            "type": "style",
+            "hidden": true
+        },
+        {
+            "type": "refactor",
+            "section": "Improvements"
+        },
+        {
+            "type": "perf",
+            "section": "Improvements"
+        },
+        {
+            "type": "test",
+            "hidden": true
+        }
+    ]
   }
 }

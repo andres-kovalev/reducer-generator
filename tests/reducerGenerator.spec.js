@@ -28,7 +28,7 @@ describe('reducerGenerator', () => {
 
     it('should generate unique action type for each additional action', () => {
         const actions = [ 'key1', 'key2', 'key3' ];
-        const { TYPES } = generateReducer(cases, actions);
+        const { TYPES } = generateReducer(cases, null, actions);
 
         const types = [];
         actions.forEach(
@@ -41,6 +41,15 @@ describe('reducerGenerator', () => {
 
                 types.push(caseId);
             }
+        );
+    });
+
+    it('should use namespace for action types when provided', () => {
+        const namespace = 'test_namespace';
+        const { TYPES } = generateReducer(cases, namespace);
+
+        Object.keys(cases).forEach(
+            caseName => expect(TYPES[caseName]).to.be.equal(`${ namespace }.${ caseName }`)
         );
     });
 

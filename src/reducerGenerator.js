@@ -4,15 +4,18 @@ const uuidv5 = require('uuid/v5');
 const { generate, mapValues, identity } = require('./utils');
 
 const createUniqueConstant = namespace => key => `${ key }-${ uuidv5(key, namespace) }`;
+const createScopedConstant = namespace => key => `${ namespace }.${ key }`;
 
 const createActionCreator = type => payload => ({ type, payload });
 
-module.exports = (reducerMap, additionalActions = []) => {
-    const NAMESPACE = uuidv1();
+module.exports = (reducerMap, namespace, additionalActions = []) => {
+    const nameGenerator = namespace
+        ? createScopedConstant(namespace)
+        : createUniqueConstant(uuidv1());
 
     const TYPES = generate(
         Object.keys(reducerMap).concat(additionalActions),
-        createUniqueConstant(NAMESPACE)
+        nameGenerator
     );
     const ACTIONS = mapValues(TYPES, createActionCreator);
 

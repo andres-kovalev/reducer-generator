@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/andres-kovalev/reducer-generator/compare/2.0.3...2.1.0) (2019-11-25)
+
+
+### Features
+
+* added namespace support ([1789111](https://github.com/andres-kovalev/reducer-generator/commit/1789111a4b964e14b38da8e8545e1964202148aa))
+
 ## 2.0.0
 
 ### Features

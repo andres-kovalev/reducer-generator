@@ -12,9 +12,9 @@
 
 # API
 
-## generateReducer(reducerCaseMap)
+## generateReducer(reducerCaseMap, namespace, additionalActions)
 
-`reducer-generator` has only default export - `generateReducer()` function. It expects an object as only argument. Action type and action creator function will be created for each key of this object. Each value should describe reducer case to react on specific action. Reducer case function should receive two arguments: current state and action payload.
+`reducer-generator` has only default export - `generateReducer()` function. It expects an object as only required argument. Action type and action creator function will be created for each key of this object. Each value should describe reducer case to react on specific action. Reducer case function should receive two arguments: current state and action payload.
 
 ```js
 // simpleCounter.js
@@ -57,13 +57,55 @@ After call above `generateReducer()` function will return equivalen for the foll
 }
 ```
 
-Async actions can be created by using generated sync actions:
+## Action types
+
+By default unique action types will be created using [uuid](https://www.npmjs.com/package/uuid) package. Here are some examples of unique action types:
 
 ```js
-// for redux-thunk
+const TYPES = {
+    increment: "increment-27b7068b-683d-5126-bf3b-914377e27023"
+    decrement: "decrement-5fce52ab-ab1c-54bf-944b-3a0e6d868b83"
+    reset: "reset-8ad2e79f-fb96-5dee-b563-eb56b854fe19"
+}
+```
 
-const resetAsync = timeout => dispatch => setTimeout(
-    () => dispatch(counter.ACTIONS.reset()),
-    timeout
-);
+In some cases we might need constant values for action types. For instance, when we want to save change history and be able to undo/redo in different session. In this case instead of uuid we can use namespace by passing it as a 2nd argument of `generateReducer()` function:
+
+```js
+const { TYPES } = generateReducer({
+    increment: () => { ... },
+    decrement: () => { ... },
+    reset: () => { ... }
+}, 'counter');
+```
+
+Namespace will be prefixed to each action type const:
+
+```js
+const TYPES = {
+    increment: 'counter.increment',
+    decrement: 'counter.decrement',
+    reset: 'counter.reset'
+}
+```
+
+## Additional actions
+
+We also might want to have some synthetic actions. For instance to use with [takeLatest() from redux-saga](https://redux-saga.js.org/docs/api/#takeeverychannel-saga-args). To create additional action creators and action types we can pass array of key for those as 3rd argument:
+
+```js
+const { TYPES } = generateReducer({
+    increment: () => { ... },
+    decrement: () => { ... },
+    reset: () => { ... }
+}, 'counter', [ 'resetAsync' ]);
+```
+
+It will add `resetAsync` action type and action creator without changes to reducer:
+
+```js
+const TYPES = {
+    ...
+    resetAsync: 'counter.resetAsync'
+}
 ```

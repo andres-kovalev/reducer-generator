@@ -26,6 +26,26 @@ describe('reducerGenerator', () => {
         );
     });
 
+    it('should return additional action to reduce batch of actions', () => {
+        const spyCases = {
+            first: sinon.spy(),
+            second: sinon.spy(),
+            third: sinon.spy()
+        };
+        const { reducer, ACTIONS } = generateReducer(spyCases);
+
+        Object.values(spyCases).forEach(
+            spy => expect(spy).to.not.have.been.called
+        );
+
+        const all = ACTIONS.all(ACTIONS.first(), ACTIONS.second(), ACTIONS.third());
+        reducer({}, all);
+
+        Object.values(spyCases).forEach(
+            spy => expect(spy).to.have.been.calledOnce
+        );
+    });
+
     it('should generate unique action type for each additional action', () => {
         const actions = [ 'key1', 'key2', 'key3' ];
         const { TYPES } = generateReducer(cases, null, actions);

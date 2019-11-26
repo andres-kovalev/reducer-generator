@@ -1,6 +1,6 @@
 {
   "name": "reducer-generator",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "Flux boilerplate reducer (reducer & action generator)",
   "main": "index.js",
   "scripts": {

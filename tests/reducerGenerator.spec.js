@@ -17,7 +17,7 @@ describe('reducerGenerator', () => {
             (caseName) => {
                 const caseId = TYPES[caseName];
 
-                /* eslint-disable-next-line no-unused-expressions */
+                // eslint-disable-next-line no-unused-expressions
                 expect(caseId, `Action type for case '${ caseName }' is not defined`).to.be.not.undefined;
                 expect(types, `Action type for case '${ caseName }' is not unique`).to.not.includes(caseId);
 
@@ -35,7 +35,7 @@ describe('reducerGenerator', () => {
             (caseName) => {
                 const caseId = TYPES[caseName];
 
-                /* eslint-disable-next-line no-unused-expressions */
+                // eslint-disable-next-line no-unused-expressions
                 expect(caseId, `Action type for case '${ caseName }' is not defined`).to.be.not.undefined;
                 expect(types, `Action type for case '${ caseName }' is not unique`).to.not.includes(caseId);
 
@@ -88,30 +88,30 @@ describe('reducerGenerator', () => {
 
             const { ACTIONS, reducer } = generateReducer(spyCases);
 
-            /* eslint-disable-next-line no-unused-expressions */
+            // eslint-disable-next-line no-unused-expressions
             expect(spyCases.foo).have.not.been.called;
-            /* eslint-disable-next-line no-unused-expressions */
+            // eslint-disable-next-line no-unused-expressions
             expect(spyCases.bar).have.not.been.called;
 
             reducer({}, ACTIONS.foo());
 
-            /* eslint-disable-next-line no-unused-expressions */
+            // eslint-disable-next-line no-unused-expressions
             expect(spyCases.foo).to.have.been.calledOnce;
-            /* eslint-disable-next-line no-unused-expressions */
+            // eslint-disable-next-line no-unused-expressions
             expect(spyCases.bar).have.not.been.called;
 
             reducer({}, ACTIONS.bar());
 
-            /* eslint-disable-next-line no-unused-expressions */
+            // eslint-disable-next-line no-unused-expressions
             expect(spyCases.foo).to.have.been.calledOnce;
-            /* eslint-disable-next-line no-unused-expressions */
+            // eslint-disable-next-line no-unused-expressions
             expect(spyCases.bar).to.have.been.calledOnce;
 
             reducer({}, {});
 
-            /* eslint-disable-next-line no-unused-expressions */
+            // eslint-disable-next-line no-unused-expressions
             expect(spyCases.foo).to.have.been.calledOnce;
-            /* eslint-disable-next-line no-unused-expressions */
+            // eslint-disable-next-line no-unused-expressions
             expect(spyCases.bar).to.have.been.calledOnce;
         });
     });
@@ -120,5 +120,26 @@ describe('reducerGenerator', () => {
         const { reducer } = generateReducer(cases);
 
         expect(reducer).to.be.a('function');
+    });
+
+    describe('reducer', () => {
+        it('should call corresponding case on action', () => {
+            const spyCases = {
+                first: sinon.spy(),
+                second: sinon.spy(),
+                third: sinon.spy()
+            };
+            const { ACTIONS, reducer } = generateReducer(spyCases);
+
+            Object.entries(spyCases).forEach(([ key, spy ]) => {
+                // eslint-disable-next-line no-unused-expressions
+                expect(spy).to.not.have.been.called;
+
+                reducer({}, ACTIONS[key]());
+
+                // eslint-disable-next-line no-unused-expressions
+                expect(spy).to.have.been.calledOnce;
+            });
+        });
     });
 });

@@ -109,3 +109,19 @@ const TYPES = {
     resetAsync: 'counter.resetAsync'
 }
 ```
+
+# Combining actions
+
+`reducer-generator` provides a simple feature to combine actions. It may help to improve performance in some cases. For instance, when [several state updates called synchronously](https://www.bennadel.com/blog/2893-setstate-state-mutation-operation-may-be-synchronous-in-reactjs.htm) and we're not using any [other tool to fix this issue](https://github.com/andres-kovalev/react-lazy-update#overview).
+
+```js
+const { ACTIONS, reducer } = generateReducer(cases);
+
+const updated = reducer(state, ACTIONS.all(
+    ACTIONS.reset(),
+    ACTIONS.increment(),
+    ACTIONS.increment()
+));
+```
+
+Code above performs 3 changes but calls `reducer()` only once. It means there will be only one update and even synchronous update will cause only one render.

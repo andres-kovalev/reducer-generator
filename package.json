@@ -3,6 +3,7 @@
   "version": "2.2.0",
   "description": "Flux boilerplate reducer (reducer & action generator)",
   "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
     "lint": "eslint ./src ./tests --ext .js --cache --ignore-pattern .gitignore",
     "lint:fix": "eslint ./src ./tests --ext .js --cache --ignore-pattern .gitignore --fix",

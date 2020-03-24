@@ -10,6 +10,10 @@
 
 `reducer-generator` package can help for flux/redux developers to reduce boilerplate when creating actions, action creators and reducers. It can automate part of work and generate actions and action creators by itself.
 
+# Demo
+
+Example of simple todo app can be found [here](https://codesandbox.io/s/reducer-generator-playground-oyz8q?hidenavigation=1&module=%2Fsrc%2Fstore%2Ftodos.js).
+
 # API
 
 ## generateReducer(reducerCaseMap, namespace, additionalActions)

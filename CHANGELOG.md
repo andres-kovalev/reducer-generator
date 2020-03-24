@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.3.0](https://github.com/andres-kovalev/reducer-generator/compare/2.2.0...2.3.0) (2020-03-24)
+
+
+### Features
+
+* add type definitions ([cf26fab](https://github.com/andres-kovalev/reducer-generator/commit/cf26fab77b7296affb1a60608be98c96145cfe7b))
+
 ## [2.2.0](https://github.com/andres-kovalev/reducer-generator/compare/2.1.0...2.2.0) (2019-11-26)
 
 
